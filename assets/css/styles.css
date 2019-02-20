@@ -5,3 +5,9 @@
 img {
   margin: 0.5%;
 }
+
+.inline-block {
+  display: inline-block;
+  margin: 0.5%;
+  text-align: center;
+}

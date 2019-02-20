@@ -17,14 +17,38 @@
       method: "GET"
     }).then(function(response) {
       console.log(response);
+      //empty before appending
+      $("#gifView").empty();
 
-      //for each gif, create the image
+      //for each gif, create the image and write to the screen
       for (var j = 0; j < response.data.length; j++) {
-        var rating = response.data[j].rating;
-        var image = "<img src=" + response.data[j].images.original.url + ">";
-        var contain = "<span>" + rating + image + "</span>";
-        $("#gifView").append(contain);
+        var results = response.data;
+        var gifDiv = $("<div>");
+        var p = $("<p>");
+        p.text("Rating: " + results[j].rating);
+        var image = $("<img>");
+        image.attr("src", results[j].images.original_still.url);
+        image.attr("alt", results[j].title);
+        image.attr("still", results[j].images.original_still.url);
+        image.attr("motion", results[j].images.original.url);
+        image.addClass("selector");
+        gifDiv.append(p);
+        gifDiv.append(image);
+        gifDiv.addClass("inline-block");
+        $("#gifView").append(gifDiv);
       }
+
+      $(".selector").on("click", function() {
+        console.log(this);
+        console.log($(this).attr("still"));
+        console.log($(this).attr("motion"));
+
+        if ($(this).attr("src") == $(this).attr("still")) {
+          $(this).attr("src", $(this).attr("motion"));
+        } else {
+          $(this).attr("src", $(this).attr("still"));
+        }
+      });
     });
   }
 
