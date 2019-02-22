@@ -27,10 +27,10 @@
         var p = $("<p>");
         p.text("Rating: " + results[j].rating);
         var image = $("<img>");
-        image.attr("src", results[j].images.original_still.url);
+        image.attr("src", results[j].images.fixed_height_still.url);
         image.attr("alt", results[j].title);
-        image.attr("still", results[j].images.original_still.url);
-        image.attr("motion", results[j].images.original.url);
+        image.attr("still", results[j].images.fixed_height_still.url);
+        image.attr("motion", results[j].images.fixed_height.url);
         image.addClass("selector");
         gifDiv.append(p);
         gifDiv.append(image);
@@ -38,11 +38,8 @@
         $("#gifView").append(gifDiv);
       }
 
+      //create the onclick event that stops and starts the gif
       $(".selector").on("click", function() {
-        console.log(this);
-        console.log($(this).attr("still"));
-        console.log($(this).attr("motion"));
-
         if ($(this).attr("src") == $(this).attr("still")) {
           $(this).attr("src", $(this).attr("motion"));
         } else {
@@ -55,7 +52,12 @@
   //create the array of topics for the gifs
   var topics = ["Party", "Dogs", "Funny"];
 
-  //create the variables to hold my API documentation
+  //on submit button press, push .val() to topics array and invoke the creatbuttons function
+  $("#submit").on("click", function() {
+    var input = $("#input-bar").val();
+    topics.push(input);
+    createButtons();
+  });
 
   //create the dynamic buttons
   function createButtons() {
@@ -66,6 +68,7 @@
       var create = $("<button>");
       create.addClass("btn");
       create.addClass("btn-primary");
+      create.addClass("btn-selector");
       create.attr("data-name", topics[i]);
       create.text(topics[i]);
       $("#buttons").append(create);
@@ -73,7 +76,7 @@
   }
 
   //display the gifs on click of btn class
-  $(document).on("click", ".btn", displayGifs);
+  $(document).on("click", ".btn-selector", displayGifs);
 
   createButtons();
 })();
