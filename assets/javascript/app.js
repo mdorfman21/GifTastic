@@ -1,7 +1,6 @@
 (function() {
   //load in the API function
   function displayGifs() {
-    var key = "api_key=gq1LEbdFF5DgCqqoKUU2w6kvBEROq4qD";
     var gif = $(this).attr("data-name");
     var queryUrl = "https://api.giphy.com/v1/gifs/search?q=";
 
