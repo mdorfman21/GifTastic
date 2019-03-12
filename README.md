@@ -7,3 +7,5 @@ You can add your own by putting what you want in the input and pressing the subm
 If you press the fav button under the gif, then you can save it for later and it will show up when you press the favorites button under the input bar
 
 Resetting your favorites can be done by pressing the reset favorites button
+
+https://mdorfman21.github.io/GifTastic/
